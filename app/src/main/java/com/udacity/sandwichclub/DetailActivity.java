@@ -83,24 +83,32 @@ public class DetailActivity extends AppCompatActivity {
         if (akaList != null && !akaList.isEmpty()) {
             for (int i = 0; i < akaList.size(); i++) {
                 String akaName = akaList.get(i);
-                aka.setText(akaName);
+                aka.append(akaName + "\n");
             }
-                aka.setText("N.A.");
-
-
+        } else {
+            aka.setText("N.A.");
         }
 
         String placeOfOrigin = sandwich.getPlaceOfOrigin();
-        origin.setText(placeOfOrigin);
+        if(!placeOfOrigin.isEmpty()){
+            origin.setText(placeOfOrigin);
+        } else {
+            origin.setText("N.A.");
+        }
+
 
         String descriptionTxt = sandwich.getDescription();
-        description.setText(descriptionTxt);
+        if(!descriptionTxt.isEmpty()){
+            description.setText(descriptionTxt);
+        } else {
+            description.setText("N.A.");
+        }
 
         List<String> ingredientList = sandwich.getIngredients();
         for (int i = 0; i < ingredientList.size(); i++) {
             String ingredientName = ingredientList.get(i);
-            ingredients.append(ingredientName + "\n");
-        }
+            ingredients.append(ingredientName + "\n" );
+       }
     }
 
 }

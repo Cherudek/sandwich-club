@@ -30,8 +30,8 @@ public class JsonUtils {
             // Create an empty ArrayList that we can start adding sandwiches to
 
             Sandwich sandwich = null;
-            List<String> akaList = null;
-            List<String> ingredientList = null;
+            List<String> akaList = new ArrayList<>();
+            List<String> ingredientList = new ArrayList<>();
 
             // Try to parse the JSON response string. If there's a problem with the way the JSON
             // is formatted, a JSONException exception object will be thrown.
@@ -54,10 +54,7 @@ public class JsonUtils {
 
                     String alsoKnownAs = alsoKnownAsArray.getString(i);
                     Log.d(LOG_TAG, "The Also Known as  Name are / is: " + alsoKnownAs);
-
-                    akaList = new ArrayList<>();
                     akaList.add(alsoKnownAs);
-
                 }
 
                 String placeOfOrigin = baseJsonResponse.getString("placeOfOrigin");
@@ -74,14 +71,9 @@ public class JsonUtils {
 
                 // For each item in the alsoKnownAsArray create a String
                 for (int i = 0; i < ingredientsArray.length(); i++) {
-
                     String ingredient = ingredientsArray.getString(i);
-
-                    ingredientList = new ArrayList<>();
                     ingredientList.add(ingredient);
-
                     Log.d(LOG_TAG, "The Ingredients are: " + ingredient);
-
                 }
 
                 sandwich = new Sandwich(mainName, akaList, placeOfOrigin, description, image, ingredientList);
