@@ -3,6 +3,7 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -79,8 +80,7 @@ public class DetailActivity extends AppCompatActivity {
         List<String> akaList = sandwich.getAlsoKnownAs();
         if (akaList != null && !akaList.isEmpty()) {
             for (int i = 0; i < akaList.size(); i++) {
-                String akaName = akaList.get(i);
-                aka.append(akaName + "\n");
+                aka.setText(TextUtils.join(", ", akaList));
             }
         } else {
             aka.setText("N.A.");
