@@ -14,6 +14,18 @@ import org.json.JSONObject;
 public class JsonUtils {
 
     private static final String LOG_TAG = JsonUtils.class.getSimpleName();
+    public static final String JSON_BASE_OBJECT_KEY = "name";
+    public static final String JSON_MAIN_NAME_KEY = "mainName";
+    public static final String JSON_AKA_KEY = "alsoKnownAs";
+    public static final String JSON_PLACE_OF_ORIGIN_KEY = "placeOfOrigin";
+    public static final String JSON_DESCRIPTION_KEY = "description";
+    public static final String JSON_IMAGE_KEY = "image";
+    public static final String JSON_INGREDIENTS_KEY = "ingredients";
+
+
+
+
+
 
     /**
          * Return a list of {@link Sandwich} objects that has been built up from
@@ -40,12 +52,12 @@ public class JsonUtils {
                 JSONObject baseJsonResponse = new JSONObject(json);
 
                 //Extract the main JSON object called name
-                JSONObject name = baseJsonResponse.getJSONObject("name");
+                JSONObject name = baseJsonResponse.getJSONObject(JSON_BASE_OBJECT_KEY);
 
-                String mainName = name.getString("mainName");
+                String mainName = name.getString(JSON_MAIN_NAME_KEY);
                 Log.d(LOG_TAG, "The Main Name is: " + mainName);
 
-                JSONArray alsoKnownAsArray = name.getJSONArray("alsoKnownAs");
+                JSONArray alsoKnownAsArray = name.getJSONArray(JSON_AKA_KEY);
                 Log.d(LOG_TAG, "The Also Known as Array is: " + alsoKnownAsArray);
 
                 // For each item in the alsoKnownAsArray create a String
@@ -55,16 +67,16 @@ public class JsonUtils {
                     akaList.add(alsoKnownAs);
                 }
 
-                String placeOfOrigin = baseJsonResponse.getString("placeOfOrigin");
+                String placeOfOrigin = baseJsonResponse.getString(JSON_PLACE_OF_ORIGIN_KEY);
                 Log.d(LOG_TAG, "The Place of Origin is: " + placeOfOrigin);
 
-                String description = baseJsonResponse.getString("description");
+                String description = baseJsonResponse.getString(JSON_DESCRIPTION_KEY);
                 Log.d(LOG_TAG, "The Sandwich description is: " + description);
 
-                String image = baseJsonResponse.getString("image");
+                String image = baseJsonResponse.getString(JSON_IMAGE_KEY);
                 Log.d(LOG_TAG, "The Sandwich image url is: " + image);
 
-                JSONArray ingredientsArray = baseJsonResponse.getJSONArray("ingredients");
+                JSONArray ingredientsArray = baseJsonResponse.getJSONArray(JSON_INGREDIENTS_KEY);
                 Log.d(LOG_TAG, "The ingredients Array is: " + ingredientsArray);
 
                 // For each item in the ingredients Array create a String
