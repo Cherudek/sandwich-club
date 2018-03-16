@@ -18,7 +18,6 @@ public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
     private static final int DEFAULT_POSITION = -1;
-   // private Sandwich sandwich;
 
     @BindView(R.id.also_known_tv)
     TextView aka;
@@ -39,7 +38,6 @@ public class DetailActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-
         Intent intent = getIntent();
         if (intent == null) {
             closeOnError();
@@ -55,8 +53,6 @@ public class DetailActivity extends AppCompatActivity {
         String[] sandwiches = getResources().getStringArray(R.array.sandwich_details);
         String json = sandwiches[position];
 
-        //sandwich = new Sandwich();
-
         Sandwich sandwich = JsonUtils.parseSandwichJson(json);
         if (sandwich == null) {
             // Sandwich data unavailable
@@ -68,7 +64,6 @@ public class DetailActivity extends AppCompatActivity {
         Picasso.with(this)
             .load(sandwich.getImage())
             .into(ingredientsIv);
-
         setTitle(sandwich.getMainName());
     }
 
@@ -95,7 +90,6 @@ public class DetailActivity extends AppCompatActivity {
         } else {
             origin.setText("N.A.");
         }
-
 
         String descriptionTxt = sandwich.getDescription();
         if(!descriptionTxt.isEmpty()){

@@ -15,7 +15,6 @@ public class JsonUtils {
 
     private static final String LOG_TAG = JsonUtils.class.getSimpleName();
 
-
     /**
          * Return a list of {@link Sandwich} objects that has been built up from
          * parsing the given JSON response.
@@ -27,8 +26,7 @@ public class JsonUtils {
                 return null;
             }
 
-            // Create an empty ArrayList that we can start adding sandwiches to
-
+            // Create two empty ArrayList that we can start adding sandwiches to Aka names and Ingredients list
             Sandwich sandwich = null;
             List<String> akaList = new ArrayList<>();
             List<String> ingredientList = new ArrayList<>();
@@ -41,6 +39,7 @@ public class JsonUtils {
                 // Create a JSONObject from the JSON response string
                 JSONObject baseJsonResponse = new JSONObject(json);
 
+                //Extract the main JSON object called name
                 JSONObject name = baseJsonResponse.getJSONObject("name");
 
                 String mainName = name.getString("mainName");
@@ -51,7 +50,6 @@ public class JsonUtils {
 
                 // For each item in the alsoKnownAsArray create a String
                 for (int i = 0; i < alsoKnownAsArray.length(); i++) {
-
                     String alsoKnownAs = alsoKnownAsArray.getString(i);
                     Log.d(LOG_TAG, "The Also Known as  Name are / is: " + alsoKnownAs);
                     akaList.add(alsoKnownAs);
@@ -69,13 +67,14 @@ public class JsonUtils {
                 JSONArray ingredientsArray = baseJsonResponse.getJSONArray("ingredients");
                 Log.d(LOG_TAG, "The ingredients Array is: " + ingredientsArray);
 
-                // For each item in the alsoKnownAsArray create a String
+                // For each item in the ingredients Array create a String
                 for (int i = 0; i < ingredientsArray.length(); i++) {
                     String ingredient = ingredientsArray.getString(i);
                     ingredientList.add(ingredient);
                     Log.d(LOG_TAG, "The Ingredients are: " + ingredient);
                 }
 
+                //return a new sandwich object
                 sandwich = new Sandwich(mainName, akaList, placeOfOrigin, description, image, ingredientList);
 
             } catch (JSONException e) {
@@ -85,7 +84,7 @@ public class JsonUtils {
                 Log.e("parseSandwichJson", "Problem parsing the JSON results", e);
             }
 
-            // Return a sandwich object
+            // Return a sandwich object to the detail activity
             return  sandwich;
         }
     }
