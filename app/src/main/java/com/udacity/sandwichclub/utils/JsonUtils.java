@@ -54,10 +54,10 @@ public class JsonUtils {
                 //Extract the main JSON object called name
                 JSONObject name = baseJsonResponse.getJSONObject(JSON_BASE_OBJECT_KEY);
 
-                String mainName = name.getString(JSON_MAIN_NAME_KEY);
+                String mainName = name.optString(JSON_MAIN_NAME_KEY);
                 Log.d(LOG_TAG, "The Main Name is: " + mainName);
 
-                JSONArray alsoKnownAsArray = name.getJSONArray(JSON_AKA_KEY);
+                JSONArray alsoKnownAsArray = name.optJSONArray(JSON_AKA_KEY);
                 Log.d(LOG_TAG, "The Also Known as Array is: " + alsoKnownAsArray);
 
                 // For each item in the alsoKnownAsArray create a String
@@ -67,16 +67,16 @@ public class JsonUtils {
                     akaList.add(alsoKnownAs);
                 }
 
-                String placeOfOrigin = baseJsonResponse.getString(JSON_PLACE_OF_ORIGIN_KEY);
+                String placeOfOrigin = baseJsonResponse.optString(JSON_PLACE_OF_ORIGIN_KEY);
                 Log.d(LOG_TAG, "The Place of Origin is: " + placeOfOrigin);
 
-                String description = baseJsonResponse.getString(JSON_DESCRIPTION_KEY);
+                String description = baseJsonResponse.optString(JSON_DESCRIPTION_KEY);
                 Log.d(LOG_TAG, "The Sandwich description is: " + description);
 
-                String image = baseJsonResponse.getString(JSON_IMAGE_KEY);
+                String image = baseJsonResponse.optString(JSON_IMAGE_KEY);
                 Log.d(LOG_TAG, "The Sandwich image url is: " + image);
 
-                JSONArray ingredientsArray = baseJsonResponse.getJSONArray(JSON_INGREDIENTS_KEY);
+                JSONArray ingredientsArray = baseJsonResponse.optJSONArray(JSON_INGREDIENTS_KEY);
                 Log.d(LOG_TAG, "The ingredients Array is: " + ingredientsArray);
 
                 // For each item in the ingredients Array create a String
